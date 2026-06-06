@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak Kami - Alat Gratis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .contact-item {
+            margin: 20px 0;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .contact-value a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+
+        .form-section {
+            margin-top: 30px;
+        }
+
+        .form-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #856404;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: #5a67d8;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>📧 Kontak Kami</h1>
+            <div class="subtitle">Ada pertanyaan, saran, atau laporan masalah? Hubungi kami!</div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📩</div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:admin@alatgratis.com">admin@alatgratis.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-label">Website</div>
+                    <div class="contact-value">
+                        <a href="index.html">https://xvamp.github.io/alatgratis/</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>ℹ️ Catatan:</strong> Karena website ini masih dalam pengembangan, form di bawah ini akan mengirim email ke admin. Pastikan email Anda valid.
+            </div>
+
+            <div class="form-section">
+                <h2>✉️ Kirim Pesan</h2>
+                <form action="https://formspree.io/f/xkggzppp" method="POST">
+                    <label>Nama Anda</label>
+                    <input type="text" name="name" placeholder="Masukkan nama Anda" required>
+                    
+                    <label>Email Anda</label>
+                    <input type="email" name="email" placeholder="Masukkan email Anda" required>
+                    
+                    <label>Subjek</label>
+                    <input type="text" name="subject" placeholder="Subjek pesan" required>
+                    
+                    <label>Pesan</label>
+                    <textarea name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    
+                    <button type="submit">Kirim Pesan ✉️</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+        </div>
+    </div>
+</body>
+</html>
