@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator BMI | Hitung Berat Badan Ideal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; text-align: center; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover { background: #219a52; }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .bmi-number { font-size: 36px; font-weight: bold; color: #2c3e50; }
+        .status { font-size: 20px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>⚖️ Kalkulator BMI</h1>
+        <p>Hitung Berat Badan Ideal</p>
+        
+        <label>Tinggi Badan (cm)</label>
+        <input type="number" id="height" placeholder="Contoh: 170">
+        
+        <label>Berat Badan (kg)</label>
+        <input type="number" id="weight" placeholder="Contoh: 65">
+        
+        <button onclick="hitungBMI()">Hitung BMI</button>
+        
+        <div class="result" id="result" style="display:none;">
+            <div class="bmi-number" id="bmiValue">0</div>
+            <div class="status" id="bmiStatus"></div>
+        </div>
+    </div>
+
+    <script>
+        function hitungBMI() {
+            let tinggi = parseFloat(document.getElementById('height').value);
+            let berat = parseFloat(document.getElementById('weight').value);
+            
+            if (isNaN(tinggi) || isNaN(berat) || tinggi <= 0 || berat <= 0) {
+                alert("Masukkan tinggi dan berat badan yang valid!");
+                return;
+            }
+            
+            let tinggiM = tinggi / 100;
+            let bmi = berat / (tinggiM * tinggiM);
+            let bmiBulat = bmi.toFixed(1);
+            
+            let status = "";
+            if (bmi < 18.5) status = "Kurus (Underweight) 💪";
+            else if (bmi <= 24.9) status = "Normal (Ideal) ✅";
+            else if (bmi <= 29.9) status = "Gemuk (Overweight) ⚠️";
+            else status = "Obesitas ❌";
+            
+            document.getElementById('bmiValue').innerHTML = bmiBulat;
+            document.getElementById('bmiStatus').innerHTML = status;
+            document.getElementById('result').style.display = "block";
+        }
+    </script>
+</body>
+</html>
