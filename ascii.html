@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to ASCII Art Generator</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a2e;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        h1 { color: #1a1a2e; text-align: center; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: monospace;
+        }
+        button {
+            background: #e94560;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .result {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🎨 Text to ASCII Art</h1>
+        <p>Ubah teks biasa menjadi seni ASCII (untuk teks pendek 1-5 huruf)</p>
+        
+        <input type="text" id="inputText" placeholder="Contoh: HAI" maxlength="5">
+        <select id="style">
+            <option value="bubble">Bubble Style (◕‿◕)</option>
+            <option value="star">Star Style ✨</option>
+            <option value="simple">Simple Style</option>
+        </select>
+        <button onclick="generateAscii()">Generate ASCII Art</button>
+        
+        <div class="result" id="result">
+            Hasil akan muncul di sini
+        </div>
+        <p style="font-size: 12px; color: #666;">⚠️ Catatan: ASCII art yang kompleks butuh ribuan baris kode. Ini versi sederhana untuk belajar.</p>
+    </div>
+
+    <script>
+        function generateAscii() {
+            let teks = document.getElementById('inputText').value.toUpperCase();
+            let style = document.getElementById('style').value;
+            
+            if (teks === "") {
+                document.getElementById('result').innerHTML = "Masukkan teks dulu! (maksimal 5 huruf)";
+                return;
+            }
+            
+            // Peta huruf sederhana untuk ASCII art
+            const asciiMap = {
+                'A': ['  A  ', ' A A ', 'AAAAA', 'A   A', 'A   A'],
+                'B': ['BBBB ', 'B   B', 'BBBB ', 'B   B', 'BBBB '],
+                'C': [' CCC ', 'C   C', 'C    ', 'C   C', ' CCC '],
+                'D': ['DDDD ', 'D   D', 'D   D', 'D   D', 'DDDD '],
+                'E': ['EEEEE', 'E    ', 'EEEE ', 'E    ', 'EEEEE'],
+                'F': ['FFFFF', 'F    ', 'FFFF ', 'F    ', 'F    '],
+                'G': [' GGG ', 'G    ', 'G  GG', 'G   G', ' GGG '],
+                'H': ['H   H', 'H   H', 'HHHHH', 'H   H', 'H   H'],
+                'I': ['IIIII', '  I  ', '  I  ', '  I  ', 'IIIII'],
+                'J': ['JJJJJ', '    J', '    J', 'J   J', ' JJJ '],
+                'K': ['K   K', 'K  K ', 'KKK  ', 'K  K ', 'K   K'],
+                'L': ['L    ', 'L    ', 'L    ', 'L    ', 'LLLLL'],
+                'M': ['M   M', 'MM MM', 'M M M', 'M   M', 'M   M'],
+                'N': ['N   N', 'NN  N', 'N N N', 'N  NN', 'N   N'],
+                'O': [' OOO ', 'O   O', 'O   O', 'O   O', ' OOO '],
+                'P': ['PPPP ', 'P   P', 'PPPP ', 'P    ', 'P    '],
+                'Q': [' QQQ ', 'Q   Q', 'Q   Q', 'Q  Q ', ' QQQQ'],
+                'R': ['RRRR ', 'R   R', 'RRRR ', 'R  R ', 'R   R'],
+                'S': [' SSS ', 'S    ', ' SSS ', '    S', ' SSS '],
+                'T': ['TTTTT', '  T  ', '  T  ', '  T  ', '  T  '],
+                'U': ['U   U', 'U   U', 'U   U', 'U   U', ' UUU '],
+                'V': ['V   V', 'V   V', ' V V ', ' V V ', '  V  '],
+                'W': ['W   W', 'W   W', 'W W W', 'WW WW', 'W   W'],
+                'X': ['X   X', ' X X ', '  X  ', ' X X ', 'X   X'],
+                'Y': ['Y   Y', ' Y Y ', '  Y  ', '  Y  ', '  Y  '],
+                'Z': ['ZZZZZ', '   Z ', '  Z  ', ' Z   ', 'ZZZZZ'],
+                ' ': ['     ', '     ', '     ', '     ', '     ']
+            };
+            
+            let hasil = [];
+            // Buat 5 baris
+            for (let baris = 0; baris < 5; baris++) {
+                let barisTeks = "";
+                for (let i = 0; i < teks.length; i++) {
+                    let huruf = teks[i];
+                    if (asciiMap[huruf]) {
+                        barisTeks += asciiMap[huruf][baris] + "  ";
+                    } else {
+                        barisTeks += "???  ";
+                    }
+                }
+                hasil.push(barisTeks);
+            }
+            
+            let output = hasil.join("\n");
+            
+            // Tambahkan dekorasi sesuai style
+            if (style === 'star') {
+                output = "✨✨✨\n" + output + "\n✨✨✨";
+            } else if (style === 'bubble') {
+                output = "◕‿◕\n" + output + "\n◕‿◕";
+            }
+            
+            document.getElementById('result').innerHTML = `<pre>${output}</pre>`;
+        }
+    </script>
+</body>
+</html>
