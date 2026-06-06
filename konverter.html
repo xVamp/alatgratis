@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter Satuan | Panjang, Berat, Suhu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1e1e2f;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        h1 { color: #1e1e2f; text-align: center; }
+        h2 { color: #3498db; font-size: 18px; margin-top: 0; }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔄 Konverter Satuan</h1>
+    
+    <!-- Konverter Panjang -->
+    <div class="card">
+        <h2>📏 Konverter Panjang</h2>
+        <input type="number" id="panjangValue" placeholder="Masukkan angka">
+        <select id="panjangDari">
+            <option value="cm">Centimeter (cm)</option>
+            <option value="m">Meter (m)</option>
+            <option value="km">Kilometer (km)</option>
+            <option value="inch">Inch</option>
+        </select>
+        <select id="panjangKe">
+            <option value="cm">Centimeter (cm)</option>
+            <option value="m">Meter (m)</option>
+            <option value="km">Kilometer (km)</option>
+            <option value="inch">Inch</option>
+        </select>
+        <button onclick="konversiPanjang()">Konversi</button>
+        <div class="result" id="hasilPanjang"></div>
+    </div>
+
+    <!-- Konverter Berat -->
+    <div class="card">
+        <h2>⚖️ Konverter Berat</h2>
+        <input type="number" id="beratValue" placeholder="Masukkan angka">
+        <select id="beratDari">
+            <option value="kg">Kilogram (kg)</option>
+            <option value="gram">Gram (g)</option>
+            <option value="pon">Pon (lb)</option>
+        </select>
+        <select id="beratKe">
+            <option value="kg">Kilogram (kg)</option>
+            <option value="gram">Gram (g)</option>
+            <option value="pon">Pon (lb)</option>
+        </select>
+        <button onclick="konversiBerat()">Konversi</button>
+        <div class="result" id="hasilBerat"></div>
+    </div>
+
+    <!-- Konverter Suhu -->
+    <div class="card">
+        <h2>🌡️ Konverter Suhu</h2>
+        <input type="number" id="suhuValue" placeholder="Masukkan angka">
+        <select id="suhuDari">
+            <option value="c">Celcius (°C)</option>
+            <option value="f">Fahrenheit (°F)</option>
+            <option value="k">Kelvin (K)</option>
+        </select>
+        <select id="suhuKe">
+            <option value="c">Celcius (°C)</option>
+            <option value="f">Fahrenheit (°F)</option>
+            <option value="k">Kelvin (K)</option>
+        </select>
+        <button onclick="konversiSuhu()">Konversi</button>
+        <div class="result" id="hasilSuhu"></div>
+    </div>
+
+    <script>
+        // Konversi Panjang (semua ke cm dulu)
+        function konversiPanjang() {
+            let nilai = parseFloat(document.getElementById('panjangValue').value);
+            let dari = document.getElementById('panjangDari').value;
+            let ke = document.getElementById('panjangKe').value;
+            
+            if (isNaN(nilai)) { alert("Masukkan angka!"); return; }
+            
+            // Ubah ke cm
+            let dalamCm = 0;
+            if (dari === 'cm') dalamCm = nilai;
+            else if (dari === 'm') dalamCm = nilai * 100;
+            else if (dari === 'km') dalamCm = nilai * 100000;
+            else if (dari === 'inch') dalamCm = nilai * 2.54;
+            
+            // Ubah dari cm ke target
+            let hasil = 0;
+            if (ke === 'cm') hasil = dalamCm;
+            else if (ke === 'm') hasil = dalamCm / 100;
+            else if (ke === 'km') hasil = dalamCm / 100000;
+            else if (ke === 'inch') hasil = dalamCm / 2.54;
+            
+            document.getElementById('hasilPanjang').innerHTML = `Hasil: ${hasil.toFixed(4)} ${ke}`;
+        }
+        
+        // Konversi Berat (semua ke kg dulu)
+        function konversiBerat() {
+            let nilai = parseFloat(document.getElementById('beratValue').value);
+            let dari = document.getElementById('beratDari').value;
+            let ke = document.getElementById('beratKe').value;
+            
+            if (isNaN(nilai)) { alert("Masukkan angka!"); return; }
+            
+            let dalamKg = 0;
+            if (dari === 'kg') dalamKg = nilai;
+            else if (dari === 'gram') dalamKg = nilai / 1000;
+            else if (dari === 'pon') dalamKg = nilai * 0.453592;
+            
+            let hasil = 0;
+            if (ke === 'kg') hasil = dalamKg;
+            else if (ke === 'gram') hasil = dalamKg * 1000;
+            else if (ke === 'pon') hasil = dalamKg / 0.453592;
+            
+            document.getElementById('hasilBerat').innerHTML = `Hasil: ${hasil.toFixed(4)} ${ke}`;
+        }
+        
+        // Konversi Suhu
+        function konversiSuhu() {
+            let nilai = parseFloat(document.getElementById('suhuValue').value);
+            let dari = document.getElementById('suhuDari').value;
+            let ke = document.getElementById('suhuKe').value;
+            
+            if (isNaN(nilai)) { alert("Masukkan angka!"); return; }
+            
+            // Ubah ke Celcius dulu
+            let dalamCelcius = 0;
+            if (dari === 'c') dalamCelcius = nilai;
+            else if (dari === 'f') dalamCelcius = (nilai - 32) * 5/9;
+            else if (dari === 'k') dalamCelcius = nilai - 273.15;
+            
+            // Ubah dari Celcius ke target
+            let hasil = 0;
+            let satuan = "";
+            if (ke === 'c') { hasil = dalamCelcius; satuan = "°C"; }
+            else if (ke === 'f') { hasil = (dalamCelcius * 9/5) + 32; satuan = "°F"; }
+            else if (ke === 'k') { hasil = dalamCelcius + 273.15; satuan = "K"; }
+            
+            document.getElementById('hasilSuhu').innerHTML = `Hasil: ${hasil.toFixed(2)} ${satuan}`;
+        }
+    </script>
+</body>
+</html>
